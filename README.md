@@ -21,6 +21,9 @@ $ git merge iss22
 $ git branch -d iss22
 ```
 
+프레임워크 언어 사용을 최소화한다.
+`vanilla javascript + HTML5 + CSS3` 위주로 개발한다.
+
 ### Plans
 
 문제 생성 기능은 두 가지 타입을 제공한다.
