@@ -2,9 +2,11 @@
 
 영어 시험 문제 제작 웹서비스.
 
-Python3 + Django + Nginx
+Python3 + Django2.0 + Bootstrap4 + Nginx
 
 ## Introduction
+
+`master` 브랜치 데모 서버 [http://stone-bridge.iptime.org:20001/](http://stone-bridge.iptime.org:20001/)
 
 모든 대화(논의 사항, 버그 및 에러, 새로운 기능 등)는 `Issues` 기능을 적극 활용한다.
 
