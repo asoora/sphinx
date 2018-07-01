@@ -1,6 +1,6 @@
 # SPHINX
 
-영어 문제 자동 생성 웹서비스.
+영어 시험 문제 제작 웹서비스.
 
 Python3 + Django + Nginx
 
@@ -21,8 +21,8 @@ $ git merge iss22
 $ git branch -d iss22
 ```
 
-프레임워크 언어 사용을 최소화한다.
-`vanilla javascript + HTML5 + CSS3` 위주로 개발한다.
+~~프레임워크 언어 사용을 최소화한다.~~
+~~`vanilla javascript + HTML5 + CSS3` 위주로 개발한다.~~
 
 ### Plans
 
@@ -48,7 +48,9 @@ $ ...
 ### Installing
 
 ```sh
-$ ...
+$ git clone https://gitlab.com/stone-bridge/sphinx.git
+$ cd sphinx
+$ pip install -r requirements.txt
 ```
 
 ## Running the tests
@@ -60,5 +62,5 @@ $ ...
 ## Deployment
 
 ```sh
-$ ...
+$ python manager.py runserver
 ```
