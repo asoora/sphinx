@@ -1,5 +1,50 @@
-{% extends 'sphinxapp/base.html' %}
-
-{% block container %}
-<h2>main page</h2>
-{% endblock %}
+{% extends 'sphinxapp/base.html' %} {% block container %}
+<h1 class="display-4">Latest Worksheets</h1>
+<p>
+    <small class="text-muted">우측 상단에 있는 검색창을 이용하셔도 좋아요.</small>
+</p>
+{% if latest_worksheet_list %}
+<div class="card-deck" id="worksheetList">
+    {% for worksheet in latest_worksheet_list %}
+    <div class="card">
+        <div class="card-header">{{ worksheet.user }}님이 만들었어요.</div>
+        <div class="card-body">
+            <h5 class="card-title">{{ worksheet.title }}</h5>
+            <p class="card-text">{{ worksheet.publisher }}</p>
+            <p class="card-text">{{ worksheet.num_questions }}개의 문제가 있어요.</p>
+            <p class="card-text">
+                <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">{{ worksheet.num_views }} views</small>
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">좋아요
+                        <span class="badge badge-secondary">{{ worksheet.num_likes }}</span>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">인쇄
+                        <span class="badge badge-secondary">{{ worksheet.num_prints }}</span>
+                    </button>
+                    <button type="button" class="dropdown-toggle btn btn-sm btn-outline-secondary" id="shareDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        공유
+                        <div class="dropdown-menu" aria-labelledby="shareDropdown">
+                            <a class="dropdown-item" href="#">페이스북 공유하기</a>
+                            <a class="dropdown-item" href="#">트위터 공유하기</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">링크 복사하기</a>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div id="loadMoreWorksheetsWrap">
+    <button type="button" class="btn btn-outline-dark btn-block" id="loadMoreWorksheets">워크시트 더보기</button>
+</div>
+{% else %}
+<p>No worksheets are available.</p>
+{% endif %} {% endblock %}
