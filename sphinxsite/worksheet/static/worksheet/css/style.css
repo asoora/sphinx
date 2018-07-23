@@ -2,3 +2,7 @@ main {
     padding-top: 80px;
     padding-bottom: 120px;
 }
+
+.card-deck {
+    padding-bottom: 30px;
+}
