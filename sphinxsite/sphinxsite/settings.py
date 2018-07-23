@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'sphinxapp.apps.SphinxappConfig',
+    'worksheet.apps.WorksheetConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
