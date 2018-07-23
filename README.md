@@ -28,6 +28,8 @@ $ git branch -d iss22
 
 ### Plans
 
+스토리보드: [https://ovenapp.io/view/DP0gyUetdEyiDYCKr06rf52i2EO7yqcE/VBT7C](https://ovenapp.io/view/DP0gyUetdEyiDYCKr06rf52i2EO7yqcE/VBT7C)
+
 문제 생성 기능은 두 가지 타입을 제공한다.
 내신 타입과 수능 타입이다.
 내신 타입을 먼저 개발하고 추후에 수능 타입을 추가한다.
