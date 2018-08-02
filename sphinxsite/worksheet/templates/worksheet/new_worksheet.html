@@ -6,17 +6,42 @@
 
 <div class="card-deck" id="questionList">
     <div class="card">
-        <div class="card-header">아래에 지문을 붙여넣은 후에 확인버튼을 누르세요.</div>
+        <div class="card-header">지문을 붙여넣고 유형을 선택한 후에 확인 버튼을 누르세요.</div>
         <div class="card-body">
-            <p class="card-text">
-                <textarea class="form-control" id="textarea1" rows="7"></textarea>
-            </p>
-            <button type="submit" class="btn btn-secondary btn-sm btn-block">확인</button>
+            <form class="form-group" id="questionForm">
+                <p class="card-text">
+                    <textarea class="form-control" id="textarea1" rows="15">The customer service representatives in an electonics firm under major restructing were told they had to begin selling service contracts for their equipment in addition to installing and reparing them. This generated a great deal of resistance. To the service representatives, learning to sell was a very different game from what they had benn playing. But it turned out they already knew a lot more about sales than they thought. For example, the first step in servicing or installing equipment is talking with the clients to understand how they used th equipment. The same is true in selling. The salesperson first has to learn about the customer's needs. The service representatives also had a great deal of product knowledge and hands-on experience, which is obviously important in sales.</textarea>
+                </p>
+                <div class="form-row">
+                    <div class="col-md-8">
+                        <select class="custom-select" id="questionType">
+                            <option selected>유형을 선택하세요.</option>
+                            <option value="1">문장 순서(밑줄) 유형</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-secondary btn-block">확인</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <div class="card">
-        <div class="card-header">문제 미리보기</div>
-        <div class="card-body"></div>
+        <div class="card-header" id="wiz-header">문제를 편집하세요.</div>
+        <div class="card-body">
+            <div class="d-none" id="wiz-body">
+                <form class="form-group" id="type1Step1Form">
+                    <div class="card-text" id="type1Step1">
+                        <div class="form-check">
+                            <input type="radio" id="sentence{$sentenceId$}" name="sentenceRadio" class="form-check-input" value="sentence{$sentenceId$}">
+                            <label class="form-check-label" for="sentence{$sentenceId$}">{$sentence$}</label>
+                        </div>
+                    </div>
+                    <p class="card-text"></p>
+                    <button type="submit" class="btn btn-secondary btn-block">확인</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 <div id="addQuestionWrap">
@@ -28,4 +53,7 @@
 <div id="submitWorksheetWrap">
     <button type="button" class="btn btn-info btn-block" id="submitWorksheet">워크시트 저장하기</button>
 </div>
+
+{% load static %}
+<script src="{% static 'worksheet/js/new_worksheet.js' %}"></script>
 {% endblock %}
