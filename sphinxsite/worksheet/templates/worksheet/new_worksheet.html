@@ -10,7 +10,7 @@
         <div class="card-body">
             <form class="form-group" id="questionForm">
                 <p class="card-text">
-                    <textarea class="form-control" id="textarea1" rows="15">The customer service representatives in an electonics firm under major restructing were told they had to begin selling service contracts for their equipment in addition to installing and reparing them. This generated a great deal of resistance. To the service representatives, learning to sell was a very different game from what they had benn playing. But it turned out they already knew a lot more about sales than they thought. For example, the first step in servicing or installing equipment is talking with the clients to understand how they used the equipment. The same is true in selling. The salesperson first has to learn about the customer's needs. The service representatives also had a great deal of product knowledge and hands-on experience, which is obviously important in sales.</textarea>
+                    <textarea class="form-control" id="textarea1" rows="15">The customer service representatives in an electronics firm under major restructuring were told they had to begin selling service contracts for their equipment in addition to installing and repairing them. This generated a great deal of resistance. To the service representatives, learning to sell was a very different game from what they had been playing. But it turned out they already knew a lot more about sales than they thought. For example, the first step in servicing or installing equipment is talking with the clients to understand how they used the equipment. The same is true in selling. The salesperson first has to learn about the customer's needs. The service representatives also had a great deal of product knowledge and hands-on experience, which is obviously important in sales.</textarea>
                 </p>
                 <div class="input-group">
                     <select class="custom-select" id="questionType">
@@ -29,24 +29,26 @@
         <div class="card-body">
             <div class="d-none" id="type1Step1Wrap">
                 <form class="form-group" id="type1Step1Form">
-                    <div class="card-text" id="type1Step1Body">
+                    <div class="card-text d-none" id="type1Step1BodyTemplate">
                         <div class="form-group form-check">
                             <input type="radio" id="sentence{$sentenceId$}" name="sentenceRadio" class="form-check-input" value="{$sentenceId$}">
                             <label class="form-check-label" for="sentence{$sentenceId$}">{$sentence$}</label>
                         </div>
                     </div>
+                    <div class="card-text" id="type1Step1Body"></div>
                     <p class="card-text"></p>
                     <button type="submit" class="btn btn-secondary btn-block">확인</button>
                 </form>
             </div>
             <div class="d-none" id="type1Step2Wrap">
                 <form class="form-group" id="type1Step2Form">
-                    <div class="card-text" id="type1Step2Body">
+                    <div class="card-text d-none" id="type1Step2BodyTemplate">
                         <div class="form-group form-check">
-                            <input type="checkbox" id="sentence{$sentenceId$}" name="sentenceCheckbox" class="form-check-input">
+                            <input type="checkbox" id="sentence{$sentenceId$}" name="{$checkbox$}" class="form-check-input">
                             <label class="form-check-label" for="sentence{$sentenceId$}">{$sentence$}</label>
                         </div>
                     </div>
+                    <div class="card-text" id="type1Step2Body"></div>
                     <p class="card-text"></p>
                     <button type="submit" class="btn btn-secondary btn-block">확인</button>
                 </form>

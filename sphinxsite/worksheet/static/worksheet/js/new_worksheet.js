@@ -3,7 +3,7 @@ var questionTitles = [
 ];
 
 function toQuestionTitle(id) {
-    return questionTitles[id - 1];
+    return questionTitles[id];
 }
 
 function splitSentence(text) {
@@ -13,17 +13,18 @@ function splitSentence(text) {
 function keepCountType1Step2(sentenceId) {
     var sentenceCheckbox = document.getElementsByName('sentenceCheckbox');
     var numChecked = 0;
-    sentenceCheckbox.forEach(function(element) {
+    sentenceCheckbox.forEach(function (element) {
         if (element.checked) {
             numChecked += 1;
         }
     });
     if (numChecked == 5) {
-        sentenceCheckbox.forEach(function(element) {
+        sentenceCheckbox.forEach(function (element) {
             if (!element.checked) {
                 element.disabled = true;
             }
         });
+        return true;
     } else {
         for (i = 0; i < sentenceCheckbox.length; i++) {
             if (i != sentenceId && !sentenceCheckbox[i].checked) {
@@ -31,34 +32,42 @@ function keepCountType1Step2(sentenceId) {
             }
         }
     }
+    return false;
 }
 
 function addType1Step2(sentences, sentenceId) {
     document.getElementById('wiz-header').innerHTML = '앞에 보기(숫자)를 넣을 문장을 선택하세요.';
     document.getElementById('type1Step1Wrap').setAttribute('class', 'd-none');
 
-    var type1Step2Template = document.getElementById('type1Step2Body').innerHTML;
+    document.getElementById('type1Step2Body').innerHTML = '';
+    var type1Step2Template = document.getElementById('type1Step2BodyTemplate').innerHTML;
     var type1Step2Html = '';
     for (i = 0; i < sentences.length; i++) {
-        type1Step2 = type1Step2Template.replace(/\{\$sentenceId\$\}/gi, i + 1);
+        type1Step2 = type1Step2Template.replace(/\{\$sentenceId\$\}/gi, i);
         type1Step2 = type1Step2.replace(/\{\$sentence\$\}/gi, sentences[i]);
+        type1Step2 = type1Step2.replace(/\{\$checkbox\$\}/gi, 'sentenceCheckbox');
         type1Step2Html += type1Step2;
     }
     document.getElementById('type1Step2Body').innerHTML = type1Step2Html;
     document.getElementById('type1Step2Wrap').removeAttribute('class');
 
     var sentenceCheckbox = document.getElementsByName('sentenceCheckbox');
+    delete sentenceCheckbox[0];
     for (i = 0; i < sentenceCheckbox.length; i++) {
         sentenceCheckbox[i].addEventListener('click', function () {
             keepCountType1Step2(sentenceId);
         });
         if (i == sentenceId) {
+            console.log('sentence ID: ' + sentenceId);
             sentenceCheckbox[i].disabled = true;
         }
     }
 
     document.getElementById('type1Step2Form').addEventListener('submit', function (e) {
         e.preventDefault();
+        if (!keepCountType1Step2(sentenceId)) {
+            return false;
+        }
         document.getElementById('wiz-header').innerHTML = '아래의 "문제 추가히기" 버튼을 클릭하세요.';
         document.getElementById('type1Step2Wrap').setAttribute('class', 'd-none');
 
@@ -81,7 +90,7 @@ function addType1Step2(sentences, sentenceId) {
 
         var type1PreviewWrap = document.getElementById('type1PreviewWrap');
         type1PreviewWrap.removeAttribute('class');
-        type1PreviewWrap.getElementsByClassName('card-text')[0].innerHTML = questionTitles[0];
+        type1PreviewWrap.getElementsByClassName('card-text')[0].innerHTML = toQuestionTitle(0);
         type1PreviewWrap.getElementsByClassName('card-text')[2].innerHTML = sentences[sentenceId];
         type1PreviewWrap.getElementsByClassName('card-text')[4].innerHTML = questionBody.join(' ');
     });
@@ -90,7 +99,8 @@ function addType1Step2(sentences, sentenceId) {
 function addType1Step1(text) {
     document.getElementById('wiz-header').innerHTML = '어떤 문장을 "주어진 문장"으로 사용하시겠어요?';
     var sentences = splitSentence(text);
-    var type1Step1Template = document.getElementById('type1Step1Body').innerHTML;
+    document.getElementById('type1Step1Body').innerHTML = '';
+    var type1Step1Template = document.getElementById('type1Step1BodyTemplate').innerHTML;
     var type1Step1Html = '';
     for (i = 0; i < sentences.length; i++) {
         type1Step1 = type1Step1Template.replace(/\{\$sentenceId\$\}/gi, i);
@@ -102,6 +112,7 @@ function addType1Step1(text) {
     document.getElementById('type1Step1Form').addEventListener('submit', function (e) {
         e.preventDefault();
         var sentenceId = document.querySelector('input[name="sentenceRadio"]:checked').value;
+        console.log('ID of selected sentence: ' + sentenceId);
         addType1Step2(sentences, sentenceId);
     });
 }
@@ -116,6 +127,9 @@ document.getElementById('questionForm').addEventListener('submit', function (e) 
     var questionTitle = toQuestionTitle(questionType);
     // call the first step
     if (questionType == 1) {
+        document.getElementById('type1Step1Wrap').setAttribute('class', 'd-none');
+        document.getElementById('type1Step2Wrap').setAttribute('class', 'd-none');
+        document.getElementById('type1PreviewWrap').setAttribute('class', 'd-none');
         addType1Step1(text);
     }
 });
