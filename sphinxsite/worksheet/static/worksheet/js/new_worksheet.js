@@ -58,7 +58,6 @@ function addType1Step2(sentences, sentenceId) {
             keepCountType1Step2(sentenceId);
         });
         if (i == sentenceId) {
-            console.log('sentence ID: ' + sentenceId);
             sentenceCheckbox[i].disabled = true;
         }
     }
@@ -68,7 +67,7 @@ function addType1Step2(sentences, sentenceId) {
         if (!keepCountType1Step2(sentenceId)) {
             return false;
         }
-        document.getElementById('wiz-header').innerHTML = '아래의 "문제 추가히기" 버튼을 클릭하세요.';
+        document.getElementById('wiz-header').innerHTML = '아래의 "문제 추가하기" 버튼을 클릭하세요.';
         document.getElementById('type1Step2Wrap').setAttribute('class', 'd-none');
 
         var questionBody = [];
@@ -112,7 +111,7 @@ function addType1Step1(text) {
     document.getElementById('type1Step1Form').addEventListener('submit', function (e) {
         e.preventDefault();
         var sentenceId = document.querySelector('input[name="sentenceRadio"]:checked').value;
-        console.log('ID of selected sentence: ' + sentenceId);
+        // call the second step
         addType1Step2(sentences, sentenceId);
     });
 }
@@ -123,8 +122,6 @@ document.getElementById('questionForm').addEventListener('submit', function (e) 
     var questionForm = document.forms['questionForm'];
     var text = questionForm['textarea1'].value;
     var questionType = questionForm['questionType'].value;
-    console.log(questionType);
-    var questionTitle = toQuestionTitle(questionType);
     // call the first step
     if (questionType == 1) {
         document.getElementById('type1Step1Wrap').setAttribute('class', 'd-none');
